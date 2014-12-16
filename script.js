@@ -2,18 +2,22 @@ var computerObj = {
     options: ["Piedra", "Papel", "Tijera"],
     choice: undefined,
     choiceImg: undefined,
-    score: 0
+    score: 0, 
+    scoreElem: document.getElementById("computer-score")
 };
 
 var userObj = {
     choice: undefined,
     choiceImg: undefined,
-    score: 0
+    score: 0, 
+    scoreElem: document.getElementById("user-score")
 };
 
 var imgs = document.getElementsByTagName("img");
 var buttonWrapper = document.getElementById("button-wrapper");
 var result = document.getElementById("result");
+
+var resultText;
 
 /* THE WHOLE GAME IN A SINGLE LINE: */
 buttonWrapper.addEventListener("click", turn, false);
@@ -26,10 +30,8 @@ buttonWrapper.addEventListener("click", turn, false);
 /* Computer choice functions */
 
 function selectComputerChoice() {
-    /* No uso Math.round() porque --> https://stackoverflow.com/questions/7377735/random-numbers-and-floor-vs-round-function/7377769#7377769 */
-    /*var random = Math.round(Math.random() * (computerObj.options.length - 1));*/
-	var random = Math.floor(Math.random() * (computerObj.options.length));
-	computerObj.choice = computerObj.options[random];
+    var random = Math.round(Math.random() * (computerObj.options.length - 1));
+    computerObj.choice = computerObj.options[random];
     computerObj.choiceImg = document.getElementById("pc-img-" + computerObj.choice);
 }
 
@@ -44,6 +46,8 @@ function defineUserChoice(e) {
 /* Game logic functions */
 
 function hideOldImagesAndDisplayNew() {
+    result.innerHTML = "";
+
     for (var i = 0; i < imgs.length; i++) {     
         imgs[i].style.display = "none";
         imgs[i].classList.remove("fade-in");
@@ -56,23 +60,31 @@ function hideOldImagesAndDisplayNew() {
     computerObj.choiceImg.classList.add("fade-in");
     computerObj.choiceImg.style.display = "inline-block";
     computerObj.choiceImg.style.visibility = "visible";
+
 }
 
 function decideWinner() {
     if (userObj.choice == computerObj.choice) {
-        result.innerHTML = "Empatan!";
+        resultText = "Empatan!";
     } else if ((userObj.choice == "Piedra" && computerObj.choice == "Tijera") || (userObj.choice == "Tijera" && computerObj.choice == "Papel") || (userObj.choice == "Papel" && computerObj.choice == "Piedra")) {
-        result.innerHTML = "Ganaste!";
+        resultText = "Ganaste!";
         userObj.score++;
     } else {
-        result.innerHTML = "Perdiste!";
+        resultText = "Perdiste!";
         computerObj.score++;
     }
 }
 
-function displayScore() {    
-    document.getElementById("computer-score").innerHTML = computerObj.score;
-    document.getElementById("user-score").innerHTML = userObj.score;
+function displayWinner() {
+    result.innerHTML = resultText;
+    userObj.scoreElem.innerText = userObj.score;
+    computerObj.scoreElem.innerText = computerObj.score;
+}
+
+function showResultAfterAnimationEnds() {
+    userObj.choiceImg.addEventListener("webkitAnimationEnd", displayWinner, false);
+    userObj.choiceImg.addEventListener("animationend", displayWinner, false);
+    userObj.choiceImg.addEventListener("oanimationend", displayWinner, false);
 }
  
 function turn(e) {
@@ -82,8 +94,9 @@ function turn(e) {
         /* User play determined by the ID of the button triggering the event */
         defineUserChoice(e);
     }
-    hideOldImagesAndDisplayNew();    
+    hideOldImagesAndDisplayNew();
     decideWinner();
+    showResultAfterAnimationEnds();
     displayScore();
     /* Avoid the event going further up the DOM after #button-wrapper */
     e.stopPropagation();
