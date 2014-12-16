@@ -60,19 +60,19 @@ function hideOldImagesAndDisplayNew() {
 
 function decideWinner() {
     if (userObj.choice == computerObj.choice) {
-        result.innerText = "Empatan!";
+        result.innerHTML = "Empatan!";
     } else if ((userObj.choice == "Piedra" && computerObj.choice == "Tijera") || (userObj.choice == "Tijera" && computerObj.choice == "Papel") || (userObj.choice == "Papel" && computerObj.choice == "Piedra")) {
-        result.innerText = "Ganaste!";
+        result.innerHTML = "Ganaste!";
         userObj.score++;
     } else {
-        result.innerText = "Perdiste!";
+        result.innerHTML = "Perdiste!";
         computerObj.score++;
     }
 }
 
 function displayScore() {    
-    document.getElementById("computer-score").innerText = computerObj.score;
-    document.getElementById("user-score").innerText = userObj.score;
+    document.getElementById("computer-score").innerHTML = computerObj.score;
+    document.getElementById("user-score").innerHTML = userObj.score;
 }
  
 function turn(e) {
