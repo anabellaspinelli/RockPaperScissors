@@ -1,0 +1,143 @@
+* {
+	font-family: sans-serif;
+}
+
+body {
+	background-color: #ecf0f1;
+}
+
+#wrapper {
+	width: 80%;
+	height: 800px;
+	margin: 50px auto;
+	text-align: center;
+}
+
+#result {
+	font-size: 5em;
+	left: 41%;
+	top: 150px;
+	color: #eeeeee;
+	position: fixed;	
+}
+
+#vs {
+	font-size: 10em;
+	position: fixed;
+	left: 45%;
+	top: 25%;
+	color: #eeeeee;
+}
+
+#user {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	background-color: #d14233;
+	float: left;
+}
+
+#computer {
+	display: inline-block;
+	width: 50%;
+	height: 100%;
+	background-color: #2980b9;
+	float: right;
+}
+
+#button-wrapper {
+	margin: 0 auto;
+}
+
+input {
+	background-color: #f1c40f;
+	border: none;
+	padding: 20px 10%;
+	font-size: 1em;
+}
+
+input:hover {
+	background-color: #f2d51f;
+}
+
+input:active {
+	background-color: #f4f73f;
+}
+
+#computer-choice {
+	font-size: 3em;
+	margin-top: 10%;
+}
+
+span {
+	font-size: 2em;
+	display: block;
+}
+
+img {
+	visibility: hidden;
+	margin: 20% auto;
+}
+
+.show {
+	display: inline-block;
+	visibility: visible;
+}
+
+
+/*
+==============================================
+Animations
+==============================================
+*/
+
+.fade-in{
+	animation-name: fade-in;
+	-webkit-animation-name: fade-in;	
+
+	animation-duration: 1s;	
+	-webkit-animation-duration: 1s;
+
+	animation-timing-function: ease-in-out;	
+	-webkit-animation-timing-function: ease-in-out;		
+
+	visibility: visible !important;	
+}
+
+@keyframes fade-in {
+	0% {
+		transform: scale(0);
+		opacity: 0.0;		
+	}
+	50% {
+		transform: scale(1.1);	
+	}
+	75% {
+		transform: scale(0.9);
+		opacity: 1;	
+	}	
+	100% {
+		transform: scale(1);
+		opacity: 1;	
+	}		
+}
+
+@-webkit-keyframes fade-in {
+	0% {
+		-webkit-transform: scale(0);
+		opacity: 0.0;		
+	}
+	50% {
+		-webkit-transform: scale(1.1);
+	}
+	75% {
+		-webkit-transform: scale(0.9);
+		opacity: 1;	
+	}	
+	100% {
+		-webkit-transform: scale(1);
+		opacity: 1;	
+	}		
+}
+
+/*
