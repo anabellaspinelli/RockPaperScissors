@@ -85,6 +85,10 @@ img {
 	#button-wrapper {
 		margin: -10% auto;
 	}
+	#result {
+		left: 37%;
+		top: 150px;		
+	}
 }
 
 
