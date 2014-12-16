@@ -30,7 +30,7 @@ buttonWrapper.addEventListener("click", turn, false);
 /* Computer choice functions */
 
 function selectComputerChoice() {
-    var random = Math.round(Math.random() * (computerObj.options.length - 1));
+    var random = Math.floor(Math.random() * (computerObj.options.length));
     computerObj.choice = computerObj.options[random];
     computerObj.choiceImg = document.getElementById("pc-img-" + computerObj.choice);
 }
