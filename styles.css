@@ -7,9 +7,9 @@ body {
 }
 
 #wrapper {
-	width: 80%;
-	height: 800px;
-	margin: 50px auto;
+	width: 95%;
+	height: 900px;
+	margin: 35px auto;
 	text-align: center;
 }
 
@@ -19,14 +19,6 @@ body {
 	top: 150px;
 	color: #eeeeee;
 	position: fixed;	
-}
-
-#vs {
-	font-size: 10em;
-	position: fixed;
-	left: 45%;
-	top: 25%;
-	color: #eeeeee;
 }
 
 #user {
@@ -82,6 +74,17 @@ img {
 .show {
 	display: inline-block;
 	visibility: visible;
+}
+
+@media (max-width: 1366px) {
+	#wrapper {
+		height: 650px;
+		width: 100%;
+		margin: 0 auto;
+	}
+	#button-wrapper {
+		margin: -10% auto;
+	}
 }
 
 
